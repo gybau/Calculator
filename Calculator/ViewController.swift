@@ -41,13 +41,24 @@ class ViewController: UIViewController {
     @IBAction func numButtonPressed(_ sender: UIButton) {
         
         //What should happen when a number is entered into the keypad
-        if let numValue = sender.currentTitle {
+        if let buttonValue = sender.currentTitle {
             
             if isFinishedTypingNumber {
-                displayLabel.text = numValue
+                displayLabel.text = buttonValue
                 isFinishedTypingNumber = false
             } else {
-                displayLabel.text?.append(numValue)
+                
+                if buttonValue == "." {
+                    guard let currentDisplayValue = Double(displayLabel.text!) else {
+                        fatalError("The number displayed cannot be converted to type Double!")
+                    }
+                    let isInt = floor(currentDisplayValue) == currentDisplayValue
+                    
+                    if !isInt {
+                        return
+                    }
+                }
+                displayLabel.text?.append(buttonValue)
             }
         }
     }
