@@ -2,22 +2,24 @@
 
 import Foundation
 
-class CalculatorLogic {
+struct CalculatorLogic {
     
-    var number: Double
+    private var number: Double?
     
-    init(number: Double) {
+    mutating func setNumber(_ number: Double) {
         self.number = number
     }
     
     func upperCalcButtonPressed(symbol: String) -> Double? {
         
-        if symbol == "+/-" {
-            return number * -1
-        } else if symbol == "%" {
-            return number * 0.01
-        } else if symbol == "AC" {
-            return 0
+        if let n = number {
+            if symbol == "+/-" {
+                return n * -1
+            } else if symbol == "%" {
+                return n * 0.01
+            } else if symbol == "AC" {
+                return 0
+            }
         }
         
         return nil
