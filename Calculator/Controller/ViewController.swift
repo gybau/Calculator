@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var displayLabel: UILabel!
     
+    
     private var isFinishedTypingNumber = true
     
     private var displayValue: Double {
@@ -32,16 +33,16 @@ class ViewController: UIViewController {
         isFinishedTypingNumber = true
         
         
+        
         if let calcMethod = sender.currentTitle {
-            if calcMethod == "+/-" {
-                displayValue *= -1
-            } else if calcMethod == "%" {
-                displayValue *= 0.01
-            } else if calcMethod == "AC" {
-                displayLabel.text = "0"
-            } else {
-                fatalError("Cannot establish upperCalcButton value")
+            let calculatorLogic = CalculatorLogic(number: displayValue)
+            
+            guard let result = calculatorLogic.upperCalcButtonPressed(symbol: calcMethod) else {
+                fatalError("The result of the calculation is nil")
             }
+            
+            displayValue = result
+            
         }
     }
 
