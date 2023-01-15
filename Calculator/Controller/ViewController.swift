@@ -57,9 +57,7 @@ class ViewController: UIViewController {
                 
                 if buttonValue == "." {
                     
-                    let isInt = floor(displayValue) == displayValue
-                    
-                    if !isInt {
+                    if displayLabel.text!.contains(".") {
                         return
                     }
                 }
