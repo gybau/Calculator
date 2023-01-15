@@ -38,7 +38,7 @@ class ViewController: UIViewController {
 
         if let calcMethod = sender.currentTitle {
             
-            guard let result = calculatorLogic.upperCalcButtonPressed(symbol: calcMethod) else {
+            guard let result = calculatorLogic.CalcButtonPressed(symbol: calcMethod) else {
                 fatalError("The result of the calculation is nil")
             }
             
